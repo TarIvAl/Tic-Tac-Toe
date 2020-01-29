@@ -1,7 +1,8 @@
-body {
+body, html {
   margin: 0;
   padding: 0;
-  background-color: black; }
+  background-color: black;
+  font-family: "Source Code Pro", monospace; }
 
 .container {
   width: 100vw;
@@ -15,9 +16,64 @@ body {
 .player {
   width: 25vmin;
   height: 25vmin;
-  background-color: green; }
+  background-color: green;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-radius: 30%; }
+  .player__form {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center; }
+    .player__form-name {
+      margin-bottom: 10px;
+      height: 30px;
+      border-width: 0;
+      background-color: black;
+      color: green;
+      text-align: center; }
+      .player__form-name::-webkit-input-placeholder {
+        text-align: center;
+        font-family: "Source Code Pro", monospace; }
+      .player__form-name::-moz-placeholder {
+        text-align: center;
+        font-family: "Source Code Pro", monospace; }
+      .player__form-name:-ms-input-placeholder {
+        text-align: center;
+        font-family: "Source Code Pro", monospace; }
+      .player__form-name::-ms-input-placeholder {
+        text-align: center;
+        font-family: "Source Code Pro", monospace; }
+      .player__form-name::placeholder {
+        text-align: center;
+        font-family: "Source Code Pro", monospace; }
+    .player__form-button {
+      width: 0;
+      height: 0; }
 
 .field {
   width: 50vmin;
   height: 50vmin;
-  background-color: green; }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  -webkit-box-align: center;
+  align-items: center;
+  justify-items: center; }
+  .field__cell {
+    width: 90%;
+    height: 90%;
+    background-color: green;
+    border-radius: 30%; }
