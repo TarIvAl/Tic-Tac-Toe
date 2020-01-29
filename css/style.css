@@ -2,7 +2,8 @@ body, html {
   margin: 0;
   padding: 0;
   background-color: black;
-  font-family: "Source Code Pro", monospace; }
+  font-family: "Source Code Pro", monospace;
+  font-size: 20px; }
 
 .container {
   width: 100vw;
@@ -26,7 +27,7 @@ body, html {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  border-radius: 30%; }
+  border-radius: 20%; }
   .player__form {
     display: -webkit-box;
     display: flex;
@@ -60,8 +61,10 @@ body, html {
         text-align: center;
         font-family: "Source Code Pro", monospace; }
     .player__form-button {
-      width: 0;
-      height: 0; }
+      border-width: 0;
+      background-color: black;
+      color: green;
+      text-align: center; }
 
 .field {
   width: 50vmin;
@@ -73,7 +76,11 @@ body, html {
   align-items: center;
   justify-items: center; }
   .field__cell {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
     width: 90%;
     height: 90%;
     background-color: green;
-    border-radius: 30%; }
+    border-radius: 20%;
+    font-size: 50px; }
