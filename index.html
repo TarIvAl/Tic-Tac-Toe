@@ -12,27 +12,33 @@
     <div class="container">
         <div class="player">
             <!-- <form action="" class="player__form"> -->
-                <input type="text" class="player__form-name" placeholder="Имя первого игрока" id="name1" name="name1">
+                <input type="text" class="player__form-name" placeholder="Имя первого игрока" id="name1" name="name1" minlength="3">
                 <button class="player__form-button">Да!!!</button>
             <!-- </form> -->
             <p class="player__name" hidden></p>
             <p class="player__operator" hidden></p>
             <p class="player__status" hidden>Your turn</p>
         </div>
-        <div class="field">
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
-            <div class="field__cell"></div>
+        <div class="wrapper">
+            <div class="scoreboard">
+                <span class="scores">0</span><span> : </span><span class="scores">0</span>
+            </div>
+            <div class="field">
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+                <div class="field__cell"></div>
+            </div>
+            <button class="reset">Reset</button>
         </div>
         <div class="player">
             <!-- <form action="" class="player__form"> -->
-                <input type="text" class="player__form-name" placeholder="Имя второго игрока" id="name2"  name="name2">
+                <input type="text" class="player__form-name" placeholder="Имя второго игрока" id="name2"  name="name2" minlength="3">
                 <button class="player__form-button">Да!!!</button>
             <!-- </form> -->
             <p class="player__name" hidden></p>

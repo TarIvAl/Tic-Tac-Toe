@@ -11,6 +11,10 @@ body, html{
     font-family: $font;
     font-size: 20px;
 }
+button {   
+    border-width: 0;
+    text-align: center;
+}
 .container {
     width: 100vw;
     height: 100vh;
@@ -45,16 +49,25 @@ body, html{
             }
         }
         &-button{
-            border-width: 0;
             background-color: rgb(0, 0, 0);
             color: $main-color;
-            text-align: center;
         }
     }
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.scoreboard{
+    color: $main-color;
+    margin-bottom: 10%;
+    font-size: 30px;
 }
 .field {
     width: 50vmin;
     height: 50vmin;
+    margin-bottom: 10%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -70,4 +83,9 @@ body, html{
         border-radius: $border-radius;
         font-size: 50px;    
     }
+}
+.reset{
+    background-color: $main-color;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
 }

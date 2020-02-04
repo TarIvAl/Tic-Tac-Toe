@@ -5,6 +5,10 @@ body, html {
   font-family: "Source Code Pro", monospace;
   font-size: 20px; }
 
+button {
+  border-width: 0;
+  text-align: center; }
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -61,14 +65,27 @@ body, html {
         text-align: center;
         font-family: "Source Code Pro", monospace; }
     .player__form-button {
-      border-width: 0;
       background-color: black;
-      color: green;
-      text-align: center; }
+      color: green; }
+
+.wrapper {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center; }
+
+.scoreboard {
+  color: green;
+  margin-bottom: 10%;
+  font-size: 30px; }
 
 .field {
   width: 50vmin;
   height: 50vmin;
+  margin-bottom: 10%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -84,3 +101,8 @@ body, html {
     background-color: green;
     border-radius: 20%;
     font-size: 50px; }
+
+.reset {
+  background-color: green;
+  color: black;
+  font-size: 30px; }
