@@ -1,3 +1,4 @@
+const windows = document.getElementsByClassName("player");
 const forms = document.getElementsByClassName("player__form-name");
 const buttons = document.getElementsByClassName("player__form-button");
 const names = document.getElementsByClassName("player__name");
@@ -23,10 +24,18 @@ function resetPlay(){
     endGame = false;
     for(let i = 0; i < cells.length; ++i) {
         cells[i].textContent = "";
+        cells[i].style.backgroundColor = "green";
     }
-    status[0].textContent = "Your turn";
-    status[1].textContent = "Your turn";
+    status[0].textContent = "Ваша очередь";
+    status[1].textContent = "Ваша очередь";
+    windows[0].style.backgroundColor = "green";
+    windows[1].style.backgroundColor = "green";
 }
+
+resetButton[0].addEventListener("click", () => {
+    resetPlay();
+    playOn();
+});
 
 function winListener(counter, cell, player){
     let result = false;
@@ -124,8 +133,9 @@ function winListener(counter, cell, player){
                 break;
         }
         if(result){
-            status[player].textContent = " Winner!!!";
+            status[player].textContent = "Победа!!!";
             scores[player].textContent = Number(scores[player].textContent) + 1;
+            windows[player].style.backgroundColor = "rgb(128, 0, 0)";
         }
     }
     return result;
@@ -150,21 +160,32 @@ function playOn(){
                 hasEvent[i] = true;
                 cells[i].addEventListener("click", () => {
                     hasEvent[i] = false;
-                    if(activePlayer === true){
-                        cells[i].textContent = operators[0].textContent;
-                        ++counters[0];
-    
-                        endGame = winListener(counters[0], i, 0);
-                    } else {
-                        cells[i].textContent = operators[1].textContent;
-                        ++counters[1];
-    
-                        endGame = winListener(counters[1], i, 1);
-                    }
                     if(!endGame){
-                        activePlayer = !activePlayer;
-                        status[0].hidden = !status[0].hidden;
-                        status[1].hidden = !status[1].hidden;
+                        if(activePlayer === true){
+                            cells[i].textContent = operators[0].textContent;
+                            ++counters[0];
+        
+                            endGame = winListener(counters[0], i, 0);
+                        } else {
+                            cells[i].textContent = operators[1].textContent;
+                            ++counters[1];
+        
+                            endGame = winListener(counters[1], i, 1);
+                        }
+                        if(!endGame){
+                            activePlayer = !activePlayer;
+                            status[0].hidden = !status[0].hidden;
+                            status[1].hidden = !status[1].hidden;
+                        }
+                        if(counters[0] + counters[1] === 9){
+                            status[0].hidden = false;
+                            status[1].hidden = false;
+                            status[0].textContent = "Ничья";
+                            status[1].textContent = "Ничья";
+                            for(let cell of cells){
+                                cell.style.backgroundColor = "yellow";
+                            }
+                        }
                     }
                 }, {once: true});
             }
@@ -187,8 +208,3 @@ function setName(player){
 
 setName(0);
 setName(1);
-
-resetButton[0].addEventListener("click", () => {
-    resetPlay();
-    playOn();
-});
