@@ -19,8 +19,8 @@ button {
   align-items: center; }
 
 .player {
-  width: 25vmin;
-  height: 25vmin;
+  width: 27vmin;
+  height: 27vmin;
   background-color: green;
   display: -webkit-box;
   display: flex;
@@ -64,6 +64,9 @@ button {
       .player__form-name::placeholder {
         text-align: center;
         font-family: "Source Code Pro", monospace; }
+      .player__form-name:invalid {
+        background-color: maroon;
+        color: black; }
     .player__form-button {
       background-color: black;
       color: green; }

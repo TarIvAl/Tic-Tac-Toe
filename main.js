@@ -136,75 +136,90 @@ function winListener(counter, cell, player){
             status[player].textContent = "Победа!!!";
             scores[player].textContent = Number(scores[player].textContent) + 1;
             windows[player].style.backgroundColor = "rgb(128, 0, 0)";
+            resetButton[0].focus();
         }
     }
     return result;
 }
 
 function playOn(){
-    if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
-        if(Math.random() < 0.5){
-            operators[0].textContent = "X";
-            operators[1].textContent = "O";
-        } else {
-            operators[0].textContent = "O";
-            operators[1].textContent = "X";
-        }
-        if(activePlayer){
-            status[0].hidden = !status[0].hidden;
-        } else {
-            status[1].hidden = !status[1].hidden;
-        }
-        for(let i = 0; i < cells.length; ++i) {
-            if(!hasEvent[i]){
-                hasEvent[i] = true;
-                cells[i].addEventListener("click", () => {
-                    hasEvent[i] = false;
+    if(Math.random() < 0.5){
+        operators[0].textContent = "X";
+        operators[1].textContent = "O";
+    } else {
+        operators[0].textContent = "O";
+        operators[1].textContent = "X";
+    }
+    if(activePlayer){
+        status[0].hidden = !status[0].hidden;
+    } else {
+        status[1].hidden = !status[1].hidden;
+    }
+    for(let i = 0; i < cells.length; ++i) {
+        if(!hasEvent[i]){
+            hasEvent[i] = true;
+            cells[i].addEventListener("click", () => {
+                hasEvent[i] = false;
+                if(!endGame){
+                    if(activePlayer === true){
+                        cells[i].textContent = operators[0].textContent;
+                        ++counters[0];
+    
+                        endGame = winListener(counters[0], i, 0);
+                    } else {
+                        cells[i].textContent = operators[1].textContent;
+                        ++counters[1];
+    
+                        endGame = winListener(counters[1], i, 1);
+                    }
                     if(!endGame){
-                        if(activePlayer === true){
-                            cells[i].textContent = operators[0].textContent;
-                            ++counters[0];
-        
-                            endGame = winListener(counters[0], i, 0);
-                        } else {
-                            cells[i].textContent = operators[1].textContent;
-                            ++counters[1];
-        
-                            endGame = winListener(counters[1], i, 1);
-                        }
-                        if(!endGame){
-                            activePlayer = !activePlayer;
-                            status[0].hidden = !status[0].hidden;
-                            status[1].hidden = !status[1].hidden;
-                        }
-                        if(counters[0] + counters[1] === 9){
-                            status[0].hidden = false;
-                            status[1].hidden = false;
-                            status[0].textContent = "Ничья";
-                            status[1].textContent = "Ничья";
-                            for(let cell of cells){
-                                cell.style.backgroundColor = "yellow";
-                            }
+                        activePlayer = !activePlayer;
+                        status[0].hidden = !status[0].hidden;
+                        status[1].hidden = !status[1].hidden;
+                    }
+                    if(counters[0] + counters[1] === 9 && !endGame){
+                        status[0].hidden = false;
+                        status[1].hidden = false;
+                        status[0].textContent = "Ничья";
+                        status[1].textContent = "Ничья";
+                        for(let cell of cells){
+                            cell.style.backgroundColor = "yellow";
                         }
                     }
-                }, {once: true});
-            }
+                }
+            }, {once: true});
         }
     }
 }
 
 function setName(player){
+    forms[player].addEventListener("input", (symb) => {
+        if(!/[\wа-я]/.test(symb.data)){
+            forms[0].value = forms[0].value.slice(0, -1);
+        }
+    });
+    forms[player].addEventListener("keydown", (key) => {    
+        if(key.keyCode === 13){
+            buttons[player].focus();
+        }
+    });
     buttons[player].addEventListener("click", () => {
-        if(forms[player].value.trim().length >= 3){
+        if(forms[player].value.length >= 3){
             names[player].textContent = forms[player].value;
             operators[player].hidden = false;
             names[player].hidden = false;
             forms[player].hidden = true;
             buttons[player].hidden = true;
-            playOn();
+            forms[Math.abs(player - 1)].focus();
+            if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
+                playOn();
+            }
+        } else {
+            forms[player].focus();
         }
     });
 }
 
+forms[0].focus();
 setName(0);
 setName(1);
