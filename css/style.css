@@ -1,3 +1,9 @@
+p {
+  -webkit-margin-before: 0;
+  margin-block-start: 0;
+  -webkit-margin-after: 0;
+  margin-block-end: 0; }
+
 body, html {
   margin: 0;
   padding: 0;
@@ -29,8 +35,7 @@ button {
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
+  justify-content: space-around;
   border-radius: 20%; }
   .player__form {
     display: -webkit-box;
@@ -43,6 +48,7 @@ button {
     -webkit-box-pack: center;
     justify-content: center; }
     .player__form-name {
+      margin-top: 7vmin;
       margin-bottom: 10px;
       height: 30px;
       border-width: 0;
@@ -70,6 +76,10 @@ button {
     .player__form-button {
       background-color: black;
       color: green; }
+  .player__operator {
+    font-family: "Sriracha", cursive;
+    font-size: 50px;
+    line-height: 1; }
 
 .wrapper {
   display: -webkit-box;
@@ -103,7 +113,13 @@ button {
     height: 90%;
     background-color: green;
     border-radius: 20%;
-    font-size: 50px; }
+    font-size: 21vmin;
+    line-height: 11vmin;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: "Sriracha", cursive; }
 
 .reset {
   background-color: green;

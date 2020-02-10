@@ -5,7 +5,7 @@ const names = document.getElementsByClassName("player__name");
 const operators = document.getElementsByClassName("player__operator");
 const status = document.getElementsByClassName("player__status")
 const cells = document.getElementsByClassName("field__cell");
-const resetButton = document.getElementsByClassName("reset");
+const resetButton = document.querySelector(".reset");
 const scores = document.getElementsByClassName("scores");
 
 let activePlayer = true;
@@ -17,6 +17,8 @@ for (let index = 0; index < 9; index++) {
 }
 
 function resetPlay(){
+    resetButton.blur();
+    activePlayer = !activePlayer;
     counters[0] = 0;
     counters[1] = 0;
     status[0].hidden = true;
@@ -32,9 +34,11 @@ function resetPlay(){
     windows[1].style.backgroundColor = "green";
 }
 
-resetButton[0].addEventListener("click", () => {
-    resetPlay();
-    playOn();
+resetButton.addEventListener("click", () => {
+    if(endGame){
+        resetPlay();
+        playOn();
+    }
 });
 
 function winListener(counter, cell, player){
@@ -136,20 +140,13 @@ function winListener(counter, cell, player){
             status[player].textContent = "Победа!!!";
             scores[player].textContent = Number(scores[player].textContent) + 1;
             windows[player].style.backgroundColor = "rgb(128, 0, 0)";
-            resetButton[0].focus();
+            resetButton.focus();
         }
     }
     return result;
 }
 
 function playOn(){
-    if(Math.random() < 0.5){
-        operators[0].textContent = "X";
-        operators[1].textContent = "O";
-    } else {
-        operators[0].textContent = "O";
-        operators[1].textContent = "X";
-    }
     if(activePlayer){
         status[0].hidden = !status[0].hidden;
     } else {
@@ -178,6 +175,7 @@ function playOn(){
                         status[1].hidden = !status[1].hidden;
                     }
                     if(counters[0] + counters[1] === 9 && !endGame){
+                        resetButton.focus();
                         status[0].hidden = false;
                         status[1].hidden = false;
                         status[0].textContent = "Ничья";
@@ -194,7 +192,7 @@ function playOn(){
 
 function setName(player){
     forms[player].addEventListener("input", (symb) => {
-        if(!/[\wа-я]/.test(symb.data)){
+        if(!/[\wа-яА-Я]/.test(symb.data)){
             forms[0].value = forms[0].value.slice(0, -1);
         }
     });
@@ -206,7 +204,6 @@ function setName(player){
     buttons[player].addEventListener("click", () => {
         if(forms[player].value.length >= 3){
             names[player].textContent = forms[player].value;
-            operators[player].hidden = false;
             names[player].hidden = false;
             forms[player].hidden = true;
             buttons[player].hidden = true;
