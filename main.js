@@ -175,6 +175,7 @@ function playOn(){
                         status[1].hidden = !status[1].hidden;
                     }
                     if(counters[0] + counters[1] === 9 && !endGame){
+                        endGame = true;
                         resetButton.focus();
                         status[0].hidden = false;
                         status[1].hidden = false;

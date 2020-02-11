@@ -22,6 +22,7 @@ body, html{
 button {   
     border-width: 0;
     text-align: center;
+    padding: 5px 10px;
 }
 .container {
     width: 100vw;
@@ -92,15 +93,13 @@ button {
     align-items: center;
     justify-items: center;
     &__cell{
-        display: table-cell;
         text-align: center;
-        vertical-align: middle;
-        width: 90%;
-        height: 90%;
+        width: 85%;
+        height: 85%;
         background-color: $main-color;
         border-radius: $border-radius;
-        font-size: 21vmin;    
-        line-height: 11vmin;
+        font-size: 10vmin;    
+        line-height: 14vmin;
         user-select: none;
         font-family: $font-operators;
     }

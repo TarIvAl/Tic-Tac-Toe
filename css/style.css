@@ -13,7 +13,8 @@ body, html {
 
 button {
   border-width: 0;
-  text-align: center; }
+  text-align: center;
+  padding: 5px 10px; }
 
 .container {
   width: 100vw;
@@ -106,15 +107,13 @@ button {
   align-items: center;
   justify-items: center; }
   .field__cell {
-    display: table-cell;
     text-align: center;
-    vertical-align: middle;
-    width: 90%;
-    height: 90%;
+    width: 85%;
+    height: 85%;
     background-color: green;
     border-radius: 20%;
-    font-size: 21vmin;
-    line-height: 11vmin;
+    font-size: 10vmin;
+    line-height: 14vmin;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
