@@ -1,8 +1,8 @@
 //+constants
 $main-color: green;
 $border-radius: 20%;
-$font: 'Source Code Pro', monospace;
-$font-operators: 'Sriracha', cursive;
+$font-forms: 'Source Code Pro', monospace;
+$font-text: 'Sriracha', cursive;
 //-constants
 
 //+normalize
@@ -16,7 +16,7 @@ body, html{
     margin: 0;
     padding: 0;
     background-color: black;
-    font-family: $font;
+    font-family: $font-forms;
     font-size: 20px;
 }
 button {   
@@ -35,6 +35,7 @@ button {
     width: 27vmin;
     height: 27vmin;
     background-color: $main-color;
+    font-family: $font-text;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +56,7 @@ button {
             text-align: center;
             &::placeholder{
                 text-align: center;
-                font-family: $font;
+                font-family: $font-forms;
             }
             &:invalid{
                 background-color: rgb(128, 0, 0);
@@ -67,8 +68,11 @@ button {
             color: $main-color;
         }
     }
+    &__name{
+        font-size: 25px;
+
+    }
     &__operator{
-        font-family: $font-operators;
         font-size: 50px;
         line-height: 1;
     }
@@ -81,7 +85,7 @@ button {
 .scoreboard{
     color: $main-color;
     margin-bottom: 10%;
-    font-size: 30px;
+    font-size: 50px;
 }
 .field {
     width: 50vmin;
@@ -101,7 +105,7 @@ button {
         font-size: 10vmin;    
         line-height: 14vmin;
         user-select: none;
-        font-family: $font-operators;
+        font-family: $font-text;
     }
 }
 .reset{

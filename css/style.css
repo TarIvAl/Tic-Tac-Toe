@@ -29,6 +29,7 @@ button {
   width: 27vmin;
   height: 27vmin;
   background-color: green;
+  font-family: "Sriracha", cursive;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -77,8 +78,9 @@ button {
     .player__form-button {
       background-color: black;
       color: green; }
+  .player__name {
+    font-size: 25px; }
   .player__operator {
-    font-family: "Sriracha", cursive;
     font-size: 50px;
     line-height: 1; }
 
@@ -94,7 +96,7 @@ button {
 .scoreboard {
   color: green;
   margin-bottom: 10%;
-  font-size: 30px; }
+  font-size: 50px; }
 
 .field {
   width: 50vmin;

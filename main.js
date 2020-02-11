@@ -17,6 +17,16 @@ for (let index = 0; index < 9; index++) {
 }
 
 function resetPlay(){
+    if(scores[0].textContent === scores[1].textContent){
+        scores[0].style.color = "yellow";
+        scores[1].style.color = "yellow";
+    } else if(scores[0].textContent < scores[1].textContent){
+        scores[0].style.color = "rgb(128, 0, 0)";
+        scores[1].style.color = "green";
+    } else{
+        scores[0].style.color = "green";
+        scores[1].style.color = "rgb(128, 0, 0)";
+    }
     resetButton.blur();
     activePlayer = !activePlayer;
     counters[0] = 0;
@@ -139,7 +149,7 @@ function winListener(counter, cell, player){
         if(result){
             status[player].textContent = "Победа!!!";
             scores[player].textContent = Number(scores[player].textContent) + 1;
-            windows[player].style.backgroundColor = "rgb(128, 0, 0)";
+            windows[player].style.backgroundColor = "rgb(100, 255, 100)";
             resetButton.focus();
         }
     }
@@ -194,7 +204,7 @@ function playOn(){
 function setName(player){
     forms[player].addEventListener("input", (symb) => {
         if(!/[\wа-яА-Я]/.test(symb.data)){
-            forms[0].value = forms[0].value.slice(0, -1);
+            forms[player].value = forms[player].value.slice(0, -1);
         }
     });
     forms[player].addEventListener("keydown", (key) => {    
@@ -218,6 +228,5 @@ function setName(player){
     });
 }
 
-forms[0].focus();
 setName(0);
 setName(1);
