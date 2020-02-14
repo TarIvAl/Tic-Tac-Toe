@@ -163,7 +163,7 @@ function playOn(){
         status[1].hidden = !status[1].hidden;
     }
     for(let i = 0; i < cells.length; ++i) {
-        if(!hasEvent[i]){
+        if(!hasEvent[i] && cells[i].textContent.length === 0){
             hasEvent[i] = true;
             cells[i].addEventListener("click", () => {
                 hasEvent[i] = false;
@@ -204,7 +204,7 @@ function playOn(){
 function setName(player){
     forms[player].addEventListener("input", (symb) => {
         if(!/[\wа-яА-Я]/.test(symb.data)){
-            forms[player].value = forms[player].value.slice(0, -1);
+            forms[player].value = forms[player].value.replace(symb.data, "");
         }
     });
     forms[player].addEventListener("keydown", (key) => {    
@@ -222,6 +222,13 @@ function setName(player){
             if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
                 playOn();
             }
+            names[player].addEventListener("click", () => {
+                forms[player].hidden = false;
+                buttons[player].hidden = false;
+                names[player].hidden = true;
+                forms[player].focus();
+                setName(player);
+            }, {once: true});
         } else {
             forms[player].focus();
         }
@@ -230,3 +237,18 @@ function setName(player){
 
 setName(0);
 setName(1);
+
+const menu = document.querySelector(".menu");
+const menuList = document.querySelector(".menu__list");
+const menuButton = document.querySelector(".menu__button");
+
+menu.addEventListener("mouseout", () => {
+    menuList.hidden = true;
+    menuButton.hidden = false;
+});
+menu.addEventListener("mouseover", () => {
+    menuList.hidden = false;
+    menuButton.hidden = true;
+});
+
+

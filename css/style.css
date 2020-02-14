@@ -14,7 +14,11 @@ body, html {
 button {
   border-width: 0;
   text-align: center;
-  padding: 5px 10px; }
+  padding: 5px 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .container {
   width: 100vw;
@@ -24,6 +28,16 @@ button {
   justify-content: space-around;
   -webkit-box-align: center;
   align-items: center; }
+
+.menu {
+  padding: 5px 10px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  color: green;
+  border: 2px solid green;
+  border-radius: 20%;
+  text-align: center; }
 
 .player {
   width: 27vmin;
@@ -76,11 +90,16 @@ button {
         background-color: maroon;
         color: black; }
     .player__form-button {
+      margin-bottom: 15px;
       background-color: black;
       color: green; }
   .player__name {
     font-size: 25px; }
   .player__operator {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     font-size: 50px;
     line-height: 1; }
 
