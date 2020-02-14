@@ -30,6 +30,7 @@ button {
   align-items: center; }
 
 .menu {
+  font-family: "Source Code Pro", monospace;
   padding: 5px 10px;
   position: fixed;
   top: 10px;
@@ -38,6 +39,13 @@ button {
   border: 2px solid green;
   border-radius: 20%;
   text-align: center; }
+  .menu__list {
+    padding: 10px; }
+    .menu__list__item {
+      background-color: green;
+      font-family: "Source Code Pro", monospace;
+      color: black;
+      font-size: 20px; }
 
 .player {
   width: 27vmin;
@@ -65,7 +73,7 @@ button {
     justify-content: center; }
     .player__form-name {
       margin-top: 7vmin;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       height: 30px;
       border-width: 0;
       background-color: black;
@@ -90,6 +98,7 @@ button {
         background-color: maroon;
         color: black; }
     .player__form-button {
+      font-family: "Source Code Pro", monospace;
       margin-bottom: 15px;
       background-color: black;
       color: green; }
@@ -141,7 +150,8 @@ button {
     user-select: none;
     font-family: "Sriracha", cursive; }
 
-.reset {
+.restart {
+  font-family: "Source Code Pro", monospace;
   background-color: green;
   color: black;
   font-size: 30px; }

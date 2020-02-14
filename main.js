@@ -5,10 +5,16 @@ const names = document.getElementsByClassName("player__name");
 const operators = document.getElementsByClassName("player__operator");
 const status = document.getElementsByClassName("player__status")
 const cells = document.getElementsByClassName("field__cell");
-const resetButton = document.querySelector(".reset");
+const restartButton = document.querySelector(".restart");
 const scores = document.getElementsByClassName("scores");
 
-let activePlayer = true;
+let activeFirstPlayer;
+if(localStorage.getItem("activeFirstPlayer") === "false"){
+    activeFirstPlayer = false;
+} else {
+    activeFirstPlayer = true;
+}
+
 let endGame = false;
 let counters = [0,0];
 let hasEvent = [];
@@ -17,18 +23,9 @@ for (let index = 0; index < 9; index++) {
 }
 
 function resetPlay(){
-    if(scores[0].textContent === scores[1].textContent){
-        scores[0].style.color = "yellow";
-        scores[1].style.color = "yellow";
-    } else if(scores[0].textContent < scores[1].textContent){
-        scores[0].style.color = "rgb(128, 0, 0)";
-        scores[1].style.color = "green";
-    } else{
-        scores[0].style.color = "green";
-        scores[1].style.color = "rgb(128, 0, 0)";
-    }
-    resetButton.blur();
-    activePlayer = !activePlayer;
+    restartButton.blur();
+    activeFirstPlayer = !activeFirstPlayer;
+    localStorage.setItem("activeFirstPlayer", activeFirstPlayer);
     counters[0] = 0;
     counters[1] = 0;
     status[0].hidden = true;
@@ -44,7 +41,7 @@ function resetPlay(){
     windows[1].style.backgroundColor = "green";
 }
 
-resetButton.addEventListener("click", () => {
+restartButton.addEventListener("click", () => {
     if(endGame){
         resetPlay();
         playOn();
@@ -149,15 +146,16 @@ function winListener(counter, cell, player){
         if(result){
             status[player].textContent = "Победа!!!";
             scores[player].textContent = Number(scores[player].textContent) + 1;
+            localStorage.setItem("score" + player, scores[player].textContent);
             windows[player].style.backgroundColor = "rgb(100, 255, 100)";
-            resetButton.focus();
+            restartButton.focus();
         }
     }
     return result;
 }
 
 function playOn(){
-    if(activePlayer){
+    if(activeFirstPlayer){
         status[0].hidden = !status[0].hidden;
     } else {
         status[1].hidden = !status[1].hidden;
@@ -168,7 +166,7 @@ function playOn(){
             cells[i].addEventListener("click", () => {
                 hasEvent[i] = false;
                 if(!endGame){
-                    if(activePlayer === true){
+                    if(activeFirstPlayer){
                         cells[i].textContent = operators[0].textContent;
                         ++counters[0];
     
@@ -180,13 +178,15 @@ function playOn(){
                         endGame = winListener(counters[1], i, 1);
                     }
                     if(!endGame){
-                        activePlayer = !activePlayer;
+                        activeFirstPlayer = !activeFirstPlayer;
                         status[0].hidden = !status[0].hidden;
                         status[1].hidden = !status[1].hidden;
                     }
                     if(counters[0] + counters[1] === 9 && !endGame){
                         endGame = true;
-                        resetButton.focus();
+                        activeFirstPlayer = !activeFirstPlayer;
+                        localStorage.setItem("activeFirstPlayer", activeFirstPlayer);
+                        restartButton.focus();
                         status[0].hidden = false;
                         status[1].hidden = false;
                         status[0].textContent = "Ничья";
@@ -195,13 +195,25 @@ function playOn(){
                             cell.style.backgroundColor = "yellow";
                         }
                     }
+                    if(endGame){
+                        if(scores[0].textContent === scores[1].textContent){
+                            scores[0].style.color = "yellow";
+                            scores[1].style.color = "yellow";
+                        } else if(scores[0].textContent < scores[1].textContent){
+                            scores[0].style.color = "rgb(128, 0, 0)";
+                            scores[1].style.color = "green";
+                        } else{
+                            scores[0].style.color = "green";
+                            scores[1].style.color = "rgb(128, 0, 0)";
+                        }
+                    }
                 }
             }, {once: true});
         }
     }
 }
 
-function setName(player){
+function editName(player){
     forms[player].addEventListener("input", (symb) => {
         if(!/[\wа-яА-Я]/.test(symb.data)){
             forms[player].value = forms[player].value.replace(symb.data, "");
@@ -215,11 +227,13 @@ function setName(player){
     buttons[player].addEventListener("click", () => {
         if(forms[player].value.length >= 3){
             names[player].textContent = forms[player].value;
+            localStorage.setItem("name" + player, forms[player].value);
             names[player].hidden = false;
             forms[player].hidden = true;
             buttons[player].hidden = true;
             forms[Math.abs(player - 1)].focus();
-            if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
+            if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0 && status[0].hidden === status[1].hidden && status[0].hidden === true){
+                endGame = false;
                 playOn();
             }
             names[player].addEventListener("click", () => {
@@ -227,12 +241,47 @@ function setName(player){
                 buttons[player].hidden = false;
                 names[player].hidden = true;
                 forms[player].focus();
-                setName(player);
+                editName(player);
             }, {once: true});
         } else {
             forms[player].focus();
         }
     });
+}
+
+function setName(player){
+    if(!localStorage.getItem("name" + player) || forms[player].value.length !== 0){
+        editName(player);
+    } else {
+        names[player].textContent = localStorage.getItem("name" + player);
+        if(localStorage.getItem("score" + player)){
+            scores[player].textContent = localStorage.getItem("score" + player);
+        }
+        names[player].hidden = false;
+        forms[player].hidden = true;
+        buttons[player].hidden = true;
+        if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
+            playOn();
+        }
+        if(scores[0].textContent === scores[1].textContent){
+            scores[0].style.color = "yellow";
+            scores[1].style.color = "yellow";
+        } else if(scores[0].textContent < scores[1].textContent){
+            scores[0].style.color = "rgb(128, 0, 0)";
+            scores[1].style.color = "green";
+        } else{
+            scores[0].style.color = "green";
+            scores[1].style.color = "rgb(128, 0, 0)";
+        }
+        names[player].addEventListener("click", () => {
+            forms[player].value = names[player].textContent;
+            forms[player].hidden = false;
+            buttons[player].hidden = false;
+            names[player].hidden = true;
+            forms[player].focus();
+            editName(player);
+        }, {once: true});
+    }
 }
 
 setName(0);
@@ -251,4 +300,13 @@ menu.addEventListener("mouseover", () => {
     menuButton.hidden = true;
 });
 
+const reset = document.querySelector(".reset");
 
+reset.addEventListener("click", () => {
+    for (let player = 0; player < 2; player++) {
+        localStorage.removeItem("name" + player);
+        localStorage.removeItem("score" + player);
+    }
+    localStorage.removeItem("activeFirstPlayer");
+    location.reload();
+});
