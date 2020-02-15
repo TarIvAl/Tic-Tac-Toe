@@ -1,6 +1,6 @@
 const windows = document.getElementsByClassName("player");
-const forms = document.getElementsByClassName("player__form-name");
-const buttons = document.getElementsByClassName("player__form-button");
+const inputNames = document.getElementsByClassName("player__input-name");
+const buttons = document.getElementsByClassName("player__button");
 const names = document.getElementsByClassName("player__name");
 const operators = document.getElementsByClassName("player__operator");
 const status = document.getElementsByClassName("player__status")
@@ -9,41 +9,28 @@ const restartButton = document.querySelector(".restart");
 const scores = document.getElementsByClassName("scores");
 
 let activeFirstPlayer;
-if(localStorage.getItem("activeFirstPlayer") === "false"){
-    activeFirstPlayer = false;
-} else {
-    activeFirstPlayer = true;
-}
-
 let endGame = false;
 let counters = [0,0];
 let hasEvent = [];
-for (let index = 0; index < 9; index++) {
-    hasEvent.push(false);
-}
-
-function resetPlay(){
-    restartButton.blur();
-    activeFirstPlayer = !activeFirstPlayer;
-    localStorage.setItem("activeFirstPlayer", activeFirstPlayer);
-    counters[0] = 0;
-    counters[1] = 0;
-    status[0].hidden = true;
-    status[1].hidden = true;
-    endGame = false;
-    for(let i = 0; i < cells.length; ++i) {
-        cells[i].textContent = "";
-        cells[i].style.backgroundColor = "green";
-    }
-    status[0].textContent = "Ваша очередь";
-    status[1].textContent = "Ваша очередь";
-    windows[0].style.backgroundColor = "green";
-    windows[1].style.backgroundColor = "green";
-}
 
 restartButton.addEventListener("click", () => {
     if(endGame){
-        resetPlay();
+        restartButton.blur();
+        activeFirstPlayer = !activeFirstPlayer;
+        localStorage.setItem("activeFirstPlayer", activeFirstPlayer);
+        counters[0] = 0;
+        counters[1] = 0;
+        status[0].hidden = true;
+        status[1].hidden = true;
+        endGame = false;
+        for(let i = 0; i < cells.length; ++i) {
+            cells[i].textContent = "";
+            cells[i].style.backgroundColor = "green";
+        }
+        status[0].textContent = "Ваша очередь";
+        status[1].textContent = "Ваша очередь";
+        windows[0].style.backgroundColor = "green";
+        windows[1].style.backgroundColor = "green";
         playOn();
     }
 });
@@ -214,78 +201,90 @@ function playOn(){
 }
 
 function editName(player){
-    forms[player].addEventListener("input", (symb) => {
+    names[player].addEventListener("click", () => {
+        inputNames[player].hidden = false;
+        buttons[player].hidden = false;
+        names[player].hidden = true;
+        inputNames[player].focus();
+        setName(player);
+    }, {once: true});
+}
+
+function setName(player){
+    inputNames[player].addEventListener("input", (symb) => {
         if(!/[\wа-яА-Я]/.test(symb.data)){
-            forms[player].value = forms[player].value.replace(symb.data, "");
+            inputNames[player].value = inputNames[player].value.replace(symb.data, "");
         }
     });
-    forms[player].addEventListener("keydown", (key) => {    
+    inputNames[player].addEventListener("keydown", (key) => {    
         if(key.keyCode === 13){
             buttons[player].focus();
         }
     });
     buttons[player].addEventListener("click", () => {
-        if(forms[player].value.length >= 3){
-            names[player].textContent = forms[player].value;
-            localStorage.setItem("name" + player, forms[player].value);
+        if(inputNames[player].value.length >= 3){
+            names[player].textContent = inputNames[player].value;
+            localStorage.setItem("name" + player, inputNames[player].value);
             names[player].hidden = false;
-            forms[player].hidden = true;
+            inputNames[player].hidden = true;
             buttons[player].hidden = true;
-            forms[Math.abs(player - 1)].focus();
+            inputNames[Math.abs(player - 1)].focus();
             if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0 && status[0].hidden === status[1].hidden && status[0].hidden === true){
                 endGame = false;
                 playOn();
             }
-            names[player].addEventListener("click", () => {
-                forms[player].hidden = false;
-                buttons[player].hidden = false;
-                names[player].hidden = true;
-                forms[player].focus();
-                editName(player);
-            }, {once: true});
+            editName(player);
         } else {
-            forms[player].focus();
+            inputNames[player].focus();
         }
     });
 }
 
-function setName(player){
-    if(!localStorage.getItem("name" + player) || forms[player].value.length !== 0){
-        editName(player);
-    } else {
-        names[player].textContent = localStorage.getItem("name" + player);
-        if(localStorage.getItem("score" + player)){
-            scores[player].textContent = localStorage.getItem("score" + player);
-        }
-        names[player].hidden = false;
-        forms[player].hidden = true;
-        buttons[player].hidden = true;
-        if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
-            playOn();
-        }
-        if(scores[0].textContent === scores[1].textContent){
-            scores[0].style.color = "yellow";
-            scores[1].style.color = "yellow";
-        } else if(scores[0].textContent < scores[1].textContent){
-            scores[0].style.color = "rgb(128, 0, 0)";
-            scores[1].style.color = "green";
-        } else{
-            scores[0].style.color = "green";
-            scores[1].style.color = "rgb(128, 0, 0)";
-        }
-        names[player].addEventListener("click", () => {
-            forms[player].value = names[player].textContent;
-            forms[player].hidden = false;
-            buttons[player].hidden = false;
-            names[player].hidden = true;
-            forms[player].focus();
+function setGame(){
+    for(let player = 0; player < 2; player++){
+        if(!localStorage.getItem("name" + player) || inputNames[player].value.length !== 0){
+            setName(player);
+        } else {
+            names[player].textContent = localStorage.getItem("name" + player);
+            inputNames[player].value = names[player].textContent;
+            if(localStorage.getItem("score" + player)){
+                scores[player].textContent = localStorage.getItem("score" + player);
+            }
+            names[player].hidden = false;
+            inputNames[player].hidden = true;
+            buttons[player].hidden = true;
+            if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
+                playOn();
+            }
             editName(player);
-        }, {once: true});
+        }
+    }
+
+    if(scores[0].textContent === scores[1].textContent){
+        scores[0].style.color = "yellow";
+        scores[1].style.color = "yellow";
+    } else if(scores[0].textContent < scores[1].textContent){
+        scores[0].style.color = "rgb(128, 0, 0)";
+        scores[1].style.color = "green";
+    } else{
+        scores[0].style.color = "green";
+        scores[1].style.color = "rgb(128, 0, 0)";
+    }
+    
+    if(localStorage.getItem("activeFirstPlayer") === "false"){
+        activeFirstPlayer = false;
+    } else {
+        activeFirstPlayer = true;
+    }
+    
+    for (let index = 0; index < 9; index++) {
+        hasEvent.push(false);
     }
 }
 
-setName(0);
-setName(1);
+setGame();
+
+//menu
 
 const menu = document.querySelector(".menu");
 const menuList = document.querySelector(".menu__list");
@@ -299,6 +298,8 @@ menu.addEventListener("mouseover", () => {
     menuList.hidden = false;
     menuButton.hidden = true;
 });
+
+//reset
 
 const reset = document.querySelector(".reset");
 

@@ -61,47 +61,37 @@ button {
   align-items: center;
   justify-content: space-around;
   border-radius: 20%; }
-  .player__form {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center; }
-    .player__form-name {
-      margin-top: 7vmin;
-      margin-bottom: 5px;
-      height: 30px;
-      border-width: 0;
-      background-color: black;
-      color: green;
-      text-align: center; }
-      .player__form-name::-webkit-input-placeholder {
-        text-align: center;
-        font-family: "Source Code Pro", monospace; }
-      .player__form-name::-moz-placeholder {
-        text-align: center;
-        font-family: "Source Code Pro", monospace; }
-      .player__form-name:-ms-input-placeholder {
-        text-align: center;
-        font-family: "Source Code Pro", monospace; }
-      .player__form-name::-ms-input-placeholder {
-        text-align: center;
-        font-family: "Source Code Pro", monospace; }
-      .player__form-name::placeholder {
-        text-align: center;
-        font-family: "Source Code Pro", monospace; }
-      .player__form-name:invalid {
-        background-color: maroon;
-        color: black; }
-    .player__form-button {
-      font-family: "Source Code Pro", monospace;
-      margin-bottom: 15px;
-      background-color: black;
-      color: green; }
+  .player__input-name {
+    margin-top: 4vmin;
+    margin-bottom: 5px;
+    height: 30px;
+    border-width: 0;
+    background-color: black;
+    color: green;
+    text-align: center; }
+    .player__input-name::-webkit-input-placeholder {
+      text-align: center;
+      font-family: "Source Code Pro", monospace; }
+    .player__input-name::-moz-placeholder {
+      text-align: center;
+      font-family: "Source Code Pro", monospace; }
+    .player__input-name:-ms-input-placeholder {
+      text-align: center;
+      font-family: "Source Code Pro", monospace; }
+    .player__input-name::-ms-input-placeholder {
+      text-align: center;
+      font-family: "Source Code Pro", monospace; }
+    .player__input-name::placeholder {
+      text-align: center;
+      font-family: "Source Code Pro", monospace; }
+    .player__input-name:invalid {
+      background-color: maroon;
+      color: black; }
+  .player__button {
+    font-family: "Source Code Pro", monospace;
+    margin-bottom: 15px;
+    background-color: black;
+    color: green; }
   .player__name {
     font-size: 25px; }
   .player__operator {
