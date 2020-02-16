@@ -132,3 +132,12 @@ button {
     color: rgb(0, 0, 0);
     font-size: 30px;
 }
+.helper{
+    font-family: $font-forms;
+    padding: 10px 15px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: $main-color;
+    text-align: center;
+}

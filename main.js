@@ -280,6 +280,27 @@ function setGame(){
     for (let index = 0; index < 9; index++) {
         hasEvent.push(false);
     }
+
+    if(!names[0].textContent || !names[1].textContent){
+        const field = document.querySelector(".field");
+        const helper = document.querySelector(".helper");
+        let helpOn = false;
+
+        function getHelp(){
+            if(names[0].textContent && names[1].textContent){
+                field.removeEventListener("click", getHelp);
+                restartButton.removeEventListener("click", getHelp);
+            } else {
+                if(!helpOn){
+                    helpOn = true;
+                    helper.hidden = false;
+                    setTimeout(() => {helper.hidden = true; helpOn = false;}, 5000);
+                }
+            }       
+        }
+        field.addEventListener("click", getHelp);
+        restartButton.addEventListener("click", getHelp);
+    }
 }
 
 setGame();
