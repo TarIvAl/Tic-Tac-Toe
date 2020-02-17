@@ -1,8 +1,17 @@
 //+constants
 $main-color: green;
-$border-radius: 20%;
+$border-radius: 20px;
 $font-forms: 'Source Code Pro', monospace;
 $font-text: 'Sriracha', cursive;
+
+$extra-large-min: 1140px;
+$large-max: 1139px;
+$large-min: 960px;
+$medium-max: 959px;
+$medium-min: 720px;
+$small-max: 719px;
+$small-min: 540px;
+$extra-small-max: 539px;
 //-constants
 //+normalize
 p {
@@ -25,22 +34,36 @@ button {
     user-select: none;
 }
 .container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    // box-sizing: border-box;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
+    @media screen and (min-width: $medium-min){
+        height: 100vh;
+    }
+    @media screen and (max-width: $small-max){
+        flex-direction: column;
+    }
 }
 .menu{
     font-family: $font-forms;
     padding: 5px 10px;
-    position: fixed;
-    top: 10px;
-    left: 10px;
     color: $main-color;
-    border: 2px solid $main-color;
-    border-radius: $border-radius;
+    background-color: black;
     text-align: center;
+    @media screen and (min-width: $medium-min){
+        border: 2px solid $main-color;
+        border-radius: $border-radius;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }
+    @media screen and (max-width: $small-max){
+        border-bottom: 2px solid $main-color;
+        width: 100%;
+        margin-bottom: 3vh;
+    }
     &__list{
         padding: 10px;
         &__item{
@@ -48,28 +71,36 @@ button {
             font-family: $font-forms;
             color: rgb(0, 0, 0);
             font-size: 20px;
-
         }
     }
 }
 .player {
-    width: 27vmin;
-    height: 27vmin;
     background-color: $main-color;
     font-family: $font-text;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     border-radius: $border-radius;
+    @media screen and (min-width: $medium-min){
+        flex-direction: column;
+        width: 17vw;
+        height: 17vw;
+    }
+    @media screen and (max-width: $small-max){
+        padding: 10px 7px;
+        width: 80vw;
+        margin-bottom: 15px;
+    }
     &__input-name{ 
-        margin-top: 4vmin;
-        margin-bottom: 5px;
         height: 30px;
         border-width: 0;
         background-color: rgb(0, 0, 0);
         color: $main-color;
         text-align: center;
+        @media screen and (min-width: $medium-min){
+            margin-top: 4vmin;
+            margin-bottom: 5px;
+        }
         &::placeholder{
             text-align: center;
             font-family: $font-forms;
@@ -81,17 +112,38 @@ button {
     }
     &__button{
         font-family: $font-forms;
-        margin-bottom: 15px;
         background-color: rgb(0, 0, 0);
         color: $main-color;
+        @media screen and (min-width: $medium-min){
+            margin-bottom: 15px;
+        }
     }
     &__name{
-        font-size: 25px;
+        @media screen and (min-width: $medium-min){
+            font-size: 25px;
+        }
+        @media screen and (max-width: $small-max){
+            font-size: 20px;
+        }
 
     }
     &__operator{
         user-select: none;
-        font-size: 50px;
+        @media screen and (min-width: $medium-min){
+            font-size: 50px;
+        }
+        @media screen and (max-width: $small-max){
+            font-size: 30px;
+        }
+        line-height: 1;
+    }
+    &__status{
+        @media screen and (min-width: $medium-min){
+            font-size: 25px;
+        }
+        @media screen and (max-width: $small-max){
+            font-size: 20px;
+        }
         line-height: 1;
     }
 }
@@ -102,13 +154,26 @@ button {
 }
 .scoreboard{
     color: $main-color;
-    margin-bottom: 10%;
-    font-size: 50px;
+    @media screen and (min-width: $medium-min){
+        font-size: 50px;
+        margin-bottom: 10%;
+    }
+    @media screen and (max-width: $small-max){
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
 }
 .field {
-    width: 50vmin;
-    height: 50vmin;
-    margin-bottom: 10%;
+    @media screen and (min-width: $medium-min){
+        width: 50vmin;
+        height: 50vmin;
+        margin-bottom: 10%;
+    }
+    @media screen and (max-width: $small-max){
+        width: 70vmin;
+        height: 70vmin;
+        margin-bottom: 15px;
+    }
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -120,8 +185,14 @@ button {
         height: 85%;
         background-color: $main-color;
         border-radius: $border-radius;
-        font-size: 10vmin;    
-        line-height: 14vmin;
+        @media screen and (min-width: $medium-min){
+            font-size: 10vmin;    
+            line-height: 14vmin;
+        }
+        @media screen and (max-width: $small-max){
+            font-size: 13vmin;    
+            line-height: 17vmin;
+        }
         user-select: none;
         font-family: $font-text;
     }
@@ -130,14 +201,27 @@ button {
     font-family: $font-forms;
     background-color: $main-color;
     color: rgb(0, 0, 0);
-    font-size: 30px;
+    @media screen and (min-width: $medium-min){
+        font-size: 30px;
+    }
+    @media screen and (max-width: $small-max){
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
 }
 .helper{
     font-family: $font-forms;
     padding: 10px 15px;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    background-color: black;
+    @media screen and (min-width: $medium-min){
+        bottom: 10px;
+        right: 10px;
+    }
+    @media screen and (max-width: $small-max){
+        top: 45%;
+        border: 2px solid rgb(128, 0, 0);
+    }
     color: $main-color;
     text-align: center;
 }

@@ -281,6 +281,8 @@ function setGame(){
         hasEvent.push(false);
     }
 
+    // hint for game start
+
     if(!names[0].textContent || !names[1].textContent){
         const field = document.querySelector(".field");
         const helper = document.querySelector(".helper");
@@ -313,11 +315,11 @@ const menuButton = document.querySelector(".menu__button");
 
 menu.addEventListener("mouseout", () => {
     menuList.hidden = true;
-    menuButton.hidden = false;
+    // menuButton.hidden = false;
 });
 menu.addEventListener("mouseover", () => {
     menuList.hidden = false;
-    menuButton.hidden = true;
+    // menuButton.hidden = true;
 });
 
 //reset
@@ -332,3 +334,10 @@ reset.addEventListener("click", () => {
     localStorage.removeItem("activeFirstPlayer");
     location.reload();
 });
+
+// document.querySelector(".container").style.height = window.innerHeight + "px";
+// window.addEventListener("orientationchange", () => {
+//     setTimeout(() => {
+//         document.querySelector(".container").style.height = window.innerHeight + "px";
+//     }, 500);
+// });
