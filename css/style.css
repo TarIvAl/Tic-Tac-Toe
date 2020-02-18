@@ -71,13 +71,20 @@ button {
   align-items: center;
   justify-content: space-around;
   border-radius: 20px; }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 720px) and (min-height: 500px) {
     .player {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       flex-direction: column;
       width: 17vw;
       height: 17vw; } }
+  @media screen and (min-width: 720px) and (max-height: 499px) {
+    .player {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+      width: 23vw;
+      height: 15vw; } }
   @media screen and (max-width: 719px) {
     .player {
       padding: 10px 7px;
@@ -89,6 +96,9 @@ button {
     background-color: black;
     color: green;
     text-align: center; }
+    @media screen and (min-width: 720px) and (max-height: 499px) {
+      .player__input-name {
+        width: 90%; } }
     @media screen and (min-width: 720px) {
       .player__input-name {
         margin-top: 4vmin;
@@ -115,14 +125,17 @@ button {
     font-family: "Source Code Pro", monospace;
     background-color: black;
     color: green; }
-    @media screen and (min-width: 720px) {
+    @media screen and (min-width: 720px) and (min-height: 500px) {
       .player__button {
         margin-bottom: 15px; } }
-  @media screen and (min-width: 720px) {
-    .player__name {
+  @media screen and (min-width: 720px) and (min-height: 500px) {
+    .player__name, .player__status {
       font-size: 25px; } }
+  @media screen and (min-width: 720px) and (max-height: 499px) {
+    .player__name, .player__status {
+      font-size: 22px; } }
   @media screen and (max-width: 719px) {
-    .player__name {
+    .player__name, .player__status {
       font-size: 20px; } }
   .player__operator {
     -webkit-user-select: none;
@@ -130,20 +143,15 @@ button {
     -ms-user-select: none;
     user-select: none;
     line-height: 1; }
-    @media screen and (min-width: 720px) {
+    @media screen and (min-width: 720px) and (min-height: 500px) {
       .player__operator {
         font-size: 50px; } }
+    @media screen and (min-width: 720px) and (max-height: 499px) {
+      .player__operator {
+        font-size: 40px; } }
     @media screen and (max-width: 719px) {
       .player__operator {
         font-size: 30px; } }
-  .player__status {
-    line-height: 1; }
-    @media screen and (min-width: 720px) {
-      .player__status {
-        font-size: 25px; } }
-    @media screen and (max-width: 719px) {
-      .player__status {
-        font-size: 20px; } }
 
 .wrapper {
   display: -webkit-box;
@@ -156,10 +164,14 @@ button {
 
 .scoreboard {
   color: green; }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 720px) and (min-height: 500px) {
     .scoreboard {
       font-size: 50px;
       margin-bottom: 10%; } }
+  @media screen and (min-width: 720px) and (max-height: 499px) {
+    .scoreboard {
+      font-size: 35px;
+      margin-bottom: 5%; } }
   @media screen and (max-width: 719px) {
     .scoreboard {
       font-size: 30px;
@@ -172,11 +184,16 @@ button {
   -webkit-box-align: center;
   align-items: center;
   justify-items: center; }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 720px) and (min-height: 500px) {
     .field {
       width: 50vmin;
       height: 50vmin;
       margin-bottom: 10%; } }
+  @media screen and (min-width: 720px) and (max-height: 499px) {
+    .field {
+      width: 60vmin;
+      height: 60vmin;
+      margin-bottom: 5%; } }
   @media screen and (max-width: 719px) {
     .field {
       width: 70vmin;
@@ -206,9 +223,12 @@ button {
   font-family: "Source Code Pro", monospace;
   background-color: green;
   color: black; }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 720px) and (min-height: 500px) {
     .restart {
       font-size: 30px; } }
+  @media screen and (min-width: 720px) and (max-height: 499px) {
+    .restart {
+      font-size: 25px; } }
   @media screen and (max-width: 719px) {
     .restart {
       font-size: 20px;
@@ -221,6 +241,9 @@ button {
   background-color: black;
   color: green;
   text-align: center; }
+  @media screen and (min-width: 720px) and (max-height: 499px) {
+    .helper {
+      font-size: 12px; } }
   @media screen and (min-width: 720px) {
     .helper {
       bottom: 10px;

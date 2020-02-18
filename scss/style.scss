@@ -12,6 +12,10 @@ $medium-min: 720px;
 $small-max: 719px;
 $small-min: 540px;
 $extra-small-max: 539px;
+
+$medium-height-min: 500px;
+$small-height-max: 499px;
+
 //-constants
 //+normalize
 p {
@@ -81,10 +85,15 @@ button {
     align-items: center;
     justify-content: space-around;
     border-radius: $border-radius;
-    @media screen and (min-width: $medium-min){
+    @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
         flex-direction: column;
         width: 17vw;
         height: 17vw;
+    }
+    @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+        flex-direction: column;
+        width: 23vw;
+        height: 15vw;
     }
     @media screen and (max-width: $small-max){
         padding: 10px 7px;
@@ -97,6 +106,9 @@ button {
         background-color: rgb(0, 0, 0);
         color: $main-color;
         text-align: center;
+        @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+            width: 90%;
+        }
         @media screen and (min-width: $medium-min){
             margin-top: 4vmin;
             margin-bottom: 5px;
@@ -114,13 +126,16 @@ button {
         font-family: $font-forms;
         background-color: rgb(0, 0, 0);
         color: $main-color;
-        @media screen and (min-width: $medium-min){
+        @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
             margin-bottom: 15px;
         }
     }
-    &__name{
-        @media screen and (min-width: $medium-min){
+    &__name, &__status{
+        @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
             font-size: 25px;
+        }
+        @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+            font-size: 22px;
         }
         @media screen and (max-width: $small-max){
             font-size: 20px;
@@ -129,20 +144,14 @@ button {
     }
     &__operator{
         user-select: none;
-        @media screen and (min-width: $medium-min){
+        @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
             font-size: 50px;
+        }
+        @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+            font-size: 40px;
         }
         @media screen and (max-width: $small-max){
             font-size: 30px;
-        }
-        line-height: 1;
-    }
-    &__status{
-        @media screen and (min-width: $medium-min){
-            font-size: 25px;
-        }
-        @media screen and (max-width: $small-max){
-            font-size: 20px;
         }
         line-height: 1;
     }
@@ -154,9 +163,13 @@ button {
 }
 .scoreboard{
     color: $main-color;
-    @media screen and (min-width: $medium-min){
+    @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
         font-size: 50px;
         margin-bottom: 10%;
+    }
+    @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+        font-size: 35px;
+        margin-bottom: 5%;
     }
     @media screen and (max-width: $small-max){
         font-size: 30px;
@@ -164,10 +177,15 @@ button {
     }
 }
 .field {
-    @media screen and (min-width: $medium-min){
+    @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
         width: 50vmin;
         height: 50vmin;
         margin-bottom: 10%;
+    }
+    @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+        width: 60vmin;
+        height: 60vmin;
+        margin-bottom: 5%;
     }
     @media screen and (max-width: $small-max){
         width: 70vmin;
@@ -201,8 +219,11 @@ button {
     font-family: $font-forms;
     background-color: $main-color;
     color: rgb(0, 0, 0);
-    @media screen and (min-width: $medium-min){
+    @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
         font-size: 30px;
+    }
+    @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+        font-size: 25px;
     }
     @media screen and (max-width: $small-max){
         font-size: 20px;
@@ -214,6 +235,9 @@ button {
     padding: 10px 15px;
     position: fixed;
     background-color: black;
+    @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+        font-size: 12px;
+    }
     @media screen and (min-width: $medium-min){
         bottom: 10px;
         right: 10px;

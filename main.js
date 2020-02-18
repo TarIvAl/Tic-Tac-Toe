@@ -212,7 +212,7 @@ function editName(player){
 
 function setName(player){
     inputNames[player].addEventListener("input", (symb) => {
-        if(!/[\wа-яА-Я]/.test(symb.data)){
+        if(!/[\wа-яА-Я+-=$!@#]/.test(symb.data)){
             inputNames[player].value = inputNames[player].value.replace(symb.data, "");
         }
     });
@@ -334,10 +334,3 @@ reset.addEventListener("click", () => {
     localStorage.removeItem("activeFirstPlayer");
     location.reload();
 });
-
-// document.querySelector(".container").style.height = window.innerHeight + "px";
-// window.addEventListener("orientationchange", () => {
-//     setTimeout(() => {
-//         document.querySelector(".container").style.height = window.innerHeight + "px";
-//     }, 500);
-// });
