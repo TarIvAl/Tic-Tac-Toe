@@ -27,10 +27,10 @@ button {
   -webkit-box-align: center;
   align-items: center;
   justify-content: space-around; }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 801px) {
     .container {
       height: 100vh; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .container {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
@@ -42,14 +42,14 @@ button {
   color: green;
   background-color: black;
   text-align: center; }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 801px) {
     .menu {
       border: 2px solid green;
       border-radius: 20px;
       position: fixed;
       top: 10px;
       left: 10px; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .menu {
       border-bottom: 2px solid green;
       width: 100%;
@@ -71,21 +71,28 @@ button {
   align-items: center;
   justify-content: space-around;
   border-radius: 20px; }
-  @media screen and (min-width: 720px) and (min-height: 500px) {
+  @media screen and (min-width: 980px) and (min-height: 650px) {
     .player {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       flex-direction: column;
       width: 17vw;
       height: 17vw; } }
-  @media screen and (min-width: 720px) and (max-height: 499px) {
+  @media screen and (max-width: 979px) and (min-width: 801px) and (min-height: 650px) {
+    .player {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+      width: 22vw;
+      height: 17vw; } }
+  @media screen and (min-width: 801px) and (max-height: 649px) {
     .player {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       flex-direction: column;
       width: 23vw;
       height: 15vw; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .player {
       padding: 10px 7px;
       width: 80vw;
@@ -96,10 +103,10 @@ button {
     background-color: black;
     color: green;
     text-align: center; }
-    @media screen and (min-width: 720px) and (max-height: 499px) {
+    @media screen and (min-width: 801px) and (max-height: 649px) {
       .player__input-name {
         width: 90%; } }
-    @media screen and (min-width: 720px) {
+    @media screen and (min-width: 801px) {
       .player__input-name {
         margin-top: 4vmin;
         margin-bottom: 5px; } }
@@ -125,31 +132,31 @@ button {
     font-family: "Source Code Pro", monospace;
     background-color: black;
     color: green; }
-    @media screen and (min-width: 720px) and (min-height: 500px) {
+    @media screen and (min-width: 801px) and (min-height: 650px) {
       .player__button {
         margin-bottom: 15px; } }
-  @media screen and (min-width: 720px) and (min-height: 500px) {
+  @media screen and (min-width: 801px) and (min-height: 650px) {
     .player__name, .player__status {
       font-size: 25px; } }
-  @media screen and (min-width: 720px) and (max-height: 499px) {
+  @media screen and (min-width: 801px) and (max-height: 649px) {
     .player__name, .player__status {
       font-size: 22px; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .player__name, .player__status {
-      font-size: 20px; } }
+      font-size: 17px; } }
   .player__operator {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     line-height: 1; }
-    @media screen and (min-width: 720px) and (min-height: 500px) {
+    @media screen and (min-width: 801px) and (min-height: 650px) {
       .player__operator {
         font-size: 50px; } }
-    @media screen and (min-width: 720px) and (max-height: 499px) {
+    @media screen and (min-width: 801px) and (max-height: 649px) {
       .player__operator {
         font-size: 40px; } }
-    @media screen and (max-width: 719px) {
+    @media screen and (max-width: 800px) {
       .player__operator {
         font-size: 30px; } }
 
@@ -164,15 +171,15 @@ button {
 
 .scoreboard {
   color: green; }
-  @media screen and (min-width: 720px) and (min-height: 500px) {
+  @media screen and (min-width: 801px) and (min-height: 650px) {
     .scoreboard {
       font-size: 50px;
       margin-bottom: 10%; } }
-  @media screen and (min-width: 720px) and (max-height: 499px) {
+  @media screen and (min-width: 801px) and (max-height: 649px) {
     .scoreboard {
       font-size: 35px;
       margin-bottom: 5%; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .scoreboard {
       font-size: 30px;
       margin-bottom: 15px; } }
@@ -184,17 +191,17 @@ button {
   -webkit-box-align: center;
   align-items: center;
   justify-items: center; }
-  @media screen and (min-width: 720px) and (min-height: 500px) {
+  @media screen and (min-width: 801px) and (min-height: 650px) {
     .field {
       width: 50vmin;
       height: 50vmin;
       margin-bottom: 10%; } }
-  @media screen and (min-width: 720px) and (max-height: 499px) {
+  @media screen and (min-width: 801px) and (max-height: 649px) {
     .field {
       width: 60vmin;
       height: 60vmin;
       margin-bottom: 5%; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .field {
       width: 70vmin;
       height: 70vmin;
@@ -210,11 +217,11 @@ button {
     -ms-user-select: none;
     user-select: none;
     font-family: "Sriracha", cursive; }
-    @media screen and (min-width: 720px) {
+    @media screen and (min-width: 801px) {
       .field__cell {
         font-size: 10vmin;
         line-height: 14vmin; } }
-    @media screen and (max-width: 719px) {
+    @media screen and (max-width: 800px) {
       .field__cell {
         font-size: 13vmin;
         line-height: 17vmin; } }
@@ -223,13 +230,13 @@ button {
   font-family: "Source Code Pro", monospace;
   background-color: green;
   color: black; }
-  @media screen and (min-width: 720px) and (min-height: 500px) {
+  @media screen and (min-width: 801px) and (min-height: 650px) {
     .restart {
       font-size: 30px; } }
-  @media screen and (min-width: 720px) and (max-height: 499px) {
+  @media screen and (min-width: 801px) and (max-height: 649px) {
     .restart {
       font-size: 25px; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .restart {
       font-size: 20px;
       margin-bottom: 15px; } }
@@ -241,14 +248,14 @@ button {
   background-color: black;
   color: green;
   text-align: center; }
-  @media screen and (min-width: 720px) and (max-height: 499px) {
+  @media screen and (min-width: 801px) and (max-height: 649px) {
     .helper {
       font-size: 12px; } }
-  @media screen and (min-width: 720px) {
+  @media screen and (min-width: 801px) {
     .helper {
       bottom: 10px;
       right: 10px; } }
-  @media screen and (max-width: 719px) {
+  @media screen and (max-width: 800px) {
     .helper {
       top: 45%;
       border: 2px solid maroon; } }

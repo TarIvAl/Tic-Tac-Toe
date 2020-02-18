@@ -6,15 +6,15 @@ $font-text: 'Sriracha', cursive;
 
 $extra-large-min: 1140px;
 $large-max: 1139px;
-$large-min: 960px;
-$medium-max: 959px;
-$medium-min: 720px;
-$small-max: 719px;
+$large-min: 980px;
+$medium-max: 979px;
+$medium-min: 801px;
+$small-max: 800px;
 $small-min: 540px;
 $extra-small-max: 539px;
 
-$medium-height-min: 500px;
-$small-height-max: 499px;
+$medium-height-min: 650px;
+$small-height-max: 649px;
 
 //-constants
 //+normalize
@@ -85,17 +85,22 @@ button {
     align-items: center;
     justify-content: space-around;
     border-radius: $border-radius;
-    @media screen and (min-width: $medium-min) and (min-height: $medium-height-min){
+    @media screen and (min-width: $extra-large-min) and (min-height: $medium-height-min){
         flex-direction: column;
         width: 17vw;
         height: 17vw;
     }
-    @media screen and (min-width: $medium-min) and (max-height: $small-height-max){
+    @media screen and (min-width: $large-min) and (max-width: $large-max) and (min-height: $medium-height-min){
+        flex-direction: column;
+        width: 19vw;
+        height: 15vw;
+    }
+    @media screen and (min-width: $large-min) and (max-height: $small-height-max){
         flex-direction: column;
         width: 23vw;
         height: 15vw;
     }
-    @media screen and (max-width: $small-max){
+    @media screen and (max-width: $medium-max){
         padding: 10px 7px;
         width: 80vw;
         margin-bottom: 15px;
@@ -138,7 +143,7 @@ button {
             font-size: 22px;
         }
         @media screen and (max-width: $small-max){
-            font-size: 20px;
+            font-size: 16px;
         }
 
     }
