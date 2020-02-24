@@ -8,10 +8,14 @@ const cells = document.getElementsByClassName("field__cell");
 const restartButton = document.querySelector(".restart");
 const scores = document.getElementsByClassName("scores");
 
-let activeFirstPlayer;
+let activeFirstPlayer; // if true - first player, else if false - second player
 let endGame = false;
 let counters = [0,0];
 let hasEvent = [];
+
+
+let leaderboard = [];
+let leaderboardCell = {name: "", points: 0};
 
 restartButton.addEventListener("click", () => {
     if(endGame){
@@ -131,6 +135,9 @@ function winListener(counter, cell, player){
                 break;
         }
         if(result){
+            incrementPoints(names[player].textContent);
+            syncLeaderbord();
+
             status[player].textContent = "Победа!!!";
             scores[player].textContent = Number(scores[player].textContent) + 1;
             localStorage.setItem("score" + player, scores[player].textContent);
@@ -237,6 +244,8 @@ function setName(player){
         } else {
             inputNames[player].focus();
         }
+        addLeader(names[player].textContent);
+        syncLeaderbord();
     });
 }
 
@@ -253,6 +262,13 @@ function setGame(){
             names[player].hidden = false;
             inputNames[player].hidden = true;
             buttons[player].hidden = true;
+
+            if(localStorage.getItem("activeFirstPlayer") === "false"){
+                activeFirstPlayer = false;
+            } else {
+                activeFirstPlayer = true;
+            }
+
             if(names[0].textContent.length !== 0 && names[1].textContent.length !== 0){
                 playOn();
             }
@@ -269,12 +285,6 @@ function setGame(){
     } else{
         scores[0].style.color = "green";
         scores[1].style.color = "rgb(128, 0, 0)";
-    }
-    
-    if(localStorage.getItem("activeFirstPlayer") === "false"){
-        activeFirstPlayer = false;
-    } else {
-        activeFirstPlayer = true;
     }
     
     for (let index = 0; index < 9; index++) {
@@ -308,22 +318,18 @@ function setGame(){
 setGame();
 
 //menu
-
 const menu = document.querySelector(".menu");
 const menuList = document.querySelector(".menu__list");
 const menuButton = document.querySelector(".menu__button");
 
 menu.addEventListener("mouseout", () => {
     menuList.hidden = true;
-    // menuButton.hidden = false;
 });
 menu.addEventListener("mouseover", () => {
     menuList.hidden = false;
-    // menuButton.hidden = true;
 });
 
 //reset
-
 const reset = document.querySelector(".reset");
 
 reset.addEventListener("click", () => {
@@ -333,4 +339,73 @@ reset.addEventListener("click", () => {
     }
     localStorage.removeItem("activeFirstPlayer");
     location.reload();
+});
+
+//leaderboard
+if(localStorage.getItem("leaderboard")){
+    leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+}
+
+function addLeader(player){
+    if(!leaderboard.find((item) => item.name.toLowerCase() === player.toLowerCase())){
+        leaderboardCell.name = player;
+        leaderboard.push({...leaderboardCell});
+        localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+    }
+}
+
+function incrementPoints (player){
+    for(let i = 0; i < leaderboard.length; i++){
+        if(leaderboard[i].name === player){
+            leaderboard[i].points++;
+            leaderboard.sort((cur, prev) => prev.points - cur.points);
+            localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+            break;
+        }
+    }
+}
+
+const leaderboardField = document.querySelector(".leaderboard__field");
+
+function syncLeaderbord(){
+    leaderboardField.querySelectorAll('*').forEach(n => n.remove());
+    leaderboard.sort((cur, prev) => prev.points - cur.points);
+    if(leaderboard.length > 0){
+        for(let i =0; i < leaderboard.length; i++){
+            leaderboardField.appendChild(document.createElement("div")).append(`${i+1}. ${leaderboard[i].name}  ${leaderboard[i].points}`);
+        }
+    } else {
+        leaderboardField.appendChild(document.createElement("div")).append("Кого вы ожидали здесь увидеть, если еще не начинали играть?");
+    }
+}
+
+syncLeaderbord();
+
+const leaderboardWrapper = document.querySelector(".leaderboard");
+
+function openCloseLeaderboard(){
+    leaderboardWrapper.hidden = !leaderboardWrapper.hidden;
+}
+
+const leaderboardButton = document.querySelector(".leaderboard-button");
+leaderboardButton.addEventListener("click", openCloseLeaderboard);
+
+const leaderboardClose = document.querySelector(".leaderboard__close");
+leaderboardClose.addEventListener("click", openCloseLeaderboard);
+
+const leaderboardReset = document.querySelector(".leaderboard__reset");
+leaderboardReset.addEventListener("click", () => {
+    openCloseLeaderboard();
+    localStorage.removeItem("leaderboard");
+    leaderboard = [];
+    for(let i = 0; i < 2; i++){
+        if(names[i].textContent){
+            let player = {name: "", points: 0};
+            player.name = names[i].textContent;
+            player.points = Number(scores[i].textContent);
+            leaderboard.push(player);
+            localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+        }
+    }
+    syncLeaderbord();
 });

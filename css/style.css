@@ -57,6 +57,7 @@ button {
   .menu__list {
     padding: 10px; }
     .menu__list__item {
+      margin-top: 15px;
       background-color: green;
       font-family: "Source Code Pro", monospace;
       color: black;
@@ -71,28 +72,28 @@ button {
   align-items: center;
   justify-content: space-around;
   border-radius: 20px; }
-  @media screen and (min-width: 980px) and (min-height: 650px) {
+  @media screen and (min-width: 1140px) and (min-height: 650px) {
     .player {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       flex-direction: column;
-      width: 17vw;
-      height: 17vw; } }
-  @media screen and (max-width: 979px) and (min-width: 801px) and (min-height: 650px) {
+      width: 16vw;
+      height: 16vw; } }
+  @media screen and (min-width: 980px) and (max-width: 1139px) and (min-height: 650px) {
     .player {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       flex-direction: column;
-      width: 22vw;
-      height: 17vw; } }
-  @media screen and (min-width: 801px) and (max-height: 649px) {
+      width: 19vw;
+      height: 15vw; } }
+  @media screen and (min-width: 980px) and (max-height: 649px) {
     .player {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       flex-direction: column;
       width: 23vw;
       height: 15vw; } }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 979px) {
     .player {
       padding: 10px 7px;
       width: 80vw;
@@ -143,7 +144,7 @@ button {
       font-size: 22px; } }
   @media screen and (max-width: 800px) {
     .player__name, .player__status {
-      font-size: 17px; } }
+      font-size: 16px; } }
   .player__operator {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -259,3 +260,26 @@ button {
     .helper {
       top: 45%;
       border: 2px solid maroon; } }
+
+.leaderboard {
+  width: 255px;
+  margin: 0 auto 15px;
+  border-radius: 20px;
+  padding: 15px 25px;
+  background-color: green;
+  font-family: "Source Code Pro", monospace;
+  text-align: center; }
+  .leaderboard__name {
+    margin-bottom: 10px; }
+  .leaderboard__field {
+    text-align: left;
+    margin: 0 auto 10px 33px;
+    line-height: 25px;
+    font-size: 20px; }
+  .leaderboard__button {
+    margin: 7px;
+    width: 120px;
+    color: green;
+    background-color: black; }
+  .leaderboard__reset {
+    border: 2px solid maroon; }

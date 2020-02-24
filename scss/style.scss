@@ -39,7 +39,6 @@ button {
 }
 .container {
     width: 100%;
-    // box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -71,6 +70,7 @@ button {
     &__list{
         padding: 10px;
         &__item{
+            margin-top: 15px;
             background-color: $main-color;
             font-family: $font-forms;
             color: rgb(0, 0, 0);
@@ -87,8 +87,8 @@ button {
     border-radius: $border-radius;
     @media screen and (min-width: $extra-large-min) and (min-height: $medium-height-min){
         flex-direction: column;
-        width: 17vw;
-        height: 17vw;
+        width: 16vw;
+        height: 16vw;
     }
     @media screen and (min-width: $large-min) and (max-width: $large-max) and (min-height: $medium-height-min){
         flex-direction: column;
@@ -253,4 +253,31 @@ button {
     }
     color: $main-color;
     text-align: center;
+}
+.leaderboard{
+    width: 255px;
+    margin: 0 auto 15px;
+    border-radius: $border-radius;
+    padding: 15px 25px;
+    background-color: $main-color;
+    font-family: $font-forms;
+    text-align: center;
+    &__name{
+        margin-bottom: 10px;
+    }
+    &__field{
+        text-align: left;
+        margin: 0 auto 10px 33px;
+        line-height: 25px;
+        font-size: 20px;
+    }
+    &__button{
+        margin: 7px;
+        width: 120px;
+        color: $main-color;
+        background-color: black;
+    }
+    &__reset{
+        border: 2px solid rgb(128, 0, 0);
+    }
 }
