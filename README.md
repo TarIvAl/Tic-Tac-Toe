@@ -1,5 +1,7 @@
 # Tic-Tac-Toe
-The game for competition in Tic-Tac-Toe
+The game for competition in [Tic-Tac-Toe](https://tarival.github.io/Tic-Tac-Toe/)
+
+Очень мотивирован начать у вас работать!
 
 Крестики-нолики были написаны мной как пример кода для резюме, чтобы продемонстрировать базовые навыки владения HTML, CSS, SCSS, JS и GIT.
 
